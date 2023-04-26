@@ -6,6 +6,6 @@ RESULT=$?
 
 if [ $RESULT -eq 0 ]; then
     if [ "$1" = "run" ]; then
-        ./nuzzle
+        ./nuzzle $2
     fi
 fi

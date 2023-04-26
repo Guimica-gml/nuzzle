@@ -9,7 +9,6 @@
 #include <SDL2/SDL_image.h>
 
 #define CELLS_DIM 4
-#define IMAGE_FILEPATH "./img/koda3.jpg"
 
 typedef struct {
     float x;
@@ -110,7 +109,15 @@ void board_slide_piece(Board *board, size_t x, size_t y, Direction dir) {
     board->cells[j][i] = temp;
 }
 
-int main(void) {
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        fprintf(stderr, "Error: expected image filepath\n");
+        fprintf(stderr, "Usage: ./program ./path-to-image.png|jpg\n");
+        exit(1);
+    }
+
+    const char *image_filepath = argv[1];
+
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         fprintf(stderr, "SDL Error: %s\n", SDL_GetError());
         exit(1);
@@ -122,7 +129,7 @@ int main(void) {
         exit(1);
     }
 
-    SDL_Surface *puzzle_surface = IMG_Load(IMAGE_FILEPATH);
+    SDL_Surface *puzzle_surface = IMG_Load(image_filepath);
 
     if (puzzle_surface == NULL) {
         fprintf(stderr, "SDL_image Error: %s\n", IMG_GetError());
