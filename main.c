@@ -112,7 +112,7 @@ void board_slide_piece(Board *board, size_t x, size_t y, Direction dir) {
 int main(int argc, char **argv) {
     if (argc < 2) {
         fprintf(stderr, "Error: expected image filepath\n");
-        fprintf(stderr, "Usage: ./program ./path-to-image.png|jpg\n");
+        fprintf(stderr, "Usage: %s ./path-to-image.png|jpg\n", argv[0]);
         exit(1);
     }
 
